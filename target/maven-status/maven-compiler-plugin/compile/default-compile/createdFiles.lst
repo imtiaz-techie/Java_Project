@@ -1,0 +1,5 @@
+com\fitnesstracker\Goal.class
+com\fitnesstracker\Workout.class
+com\fitnesstracker\DatabaseManager.class
+com\fitnesstracker\Main.class
+com\fitnesstracker\MainController.class

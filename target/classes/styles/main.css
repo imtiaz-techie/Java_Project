@@ -1,0 +1,129 @@
+/* Main theme colors */
+* {
+    -fx-primary: #2196F3;
+    -fx-primary-dark: #1976D2;
+    -fx-accent: #FF4081;
+    -fx-grey-color: #b9b9b9;
+    -fx-light-grey-color: #d1d1d1;
+    -fx-background: #FFFFFF;
+}
+
+/* Root styles */
+.root {
+    -fx-background-color: -fx-background;
+    -fx-font-family: 'Roboto', sans-serif;
+}
+
+/* JFoenix Button styles */
+.jfx-button {
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 3px;
+}
+
+.jfx-button:hover {
+    -fx-background-color: -fx-primary-dark;
+}
+
+/* JFoenix Text Field styles */
+.jfx-text-field {
+    -jfx-focus-color: -fx-primary;
+    -jfx-unfocus-color: -fx-grey-color;
+    -fx-font-size: 14px;
+}
+
+/* JFoenix Tab Pane styles */
+.jfx-tab-pane .tab-header-background {
+    -fx-background-color: -fx-primary;
+}
+
+.jfx-tab-pane .tab {
+    -fx-background-color: -fx-primary;
+}
+
+.jfx-tab-pane .tab-label {
+    -fx-text-fill: white;
+}
+
+.jfx-tab-pane .tab:selected {
+    -fx-background-color: -fx-primary-dark;
+}
+
+/* Card style for panes */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 4px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.12, -1.0, 2.0);
+    -fx-padding: 16px;
+}
+
+/* Chart styling */
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.chart-vertical-grid-lines {
+    -fx-stroke: -fx-light-grey-color;
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: -fx-light-grey-color;
+}
+
+.chart-series-line {
+    -fx-stroke-width: 2px;
+}
+
+/* Table view styling */
+.table-view {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: -fx-primary;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background .label {
+    -fx-text-fill: white;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: derive(-fx-background, -2%);
+}
+
+.table-row-cell:even {
+    -fx-background-color: -fx-background;
+}
+
+/* Scroll bar styling */
+.scroll-bar:vertical,
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .thumb,
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: -fx-grey-color;
+    -fx-background-radius: 5em;
+}
+
+.scroll-bar:vertical .track,
+.scroll-bar:horizontal .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/* Progress bar styling */
+.progress-bar {
+    -fx-accent: -fx-primary;
+}
+
+.progress-bar .bar {
+    -fx-padding: 4px;
+    -fx-background-insets: 0;
+}

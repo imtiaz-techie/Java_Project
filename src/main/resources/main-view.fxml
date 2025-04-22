@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.Insets?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.text.Text?>
+
+<VBox xmlns="http://javafx.com/javafx"
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="com.fitnesstracker.MainController"
+    spacing="10"
+    stylesheets="@styles/main.css">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+
+    <!-- Header -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <FontAwesomeIconView glyphName="HEARTBEAT" size="2em" fill="#2196F3" />
+        <Text styleClass="title" text="Fitness Tracker"
+            style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+    </HBox>
+
+    <TabPane VBox.vgrow="ALWAYS">
+        <!-- Dashboard Tab -->
+        <Tab text="Dashboard" closable="false">
+            <VBox spacing="20">
+                <!-- Stats Cards -->
+                <HBox spacing="20">
+                    <VBox styleClass="card" prefWidth="200">
+                        <FontAwesomeIconView glyphName="FIRE" size="2em" fill="#FF4081" />
+                        <Label text="Total Calories" style="-fx-font-size: 16px;" />
+                        <Label fx:id="totalCaloriesLabel" text="0 kcal"
+                            style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                    </VBox>
+                    <VBox styleClass="card" prefWidth="200">
+                        <FontAwesomeIconView glyphName="HOURGLASS" size="2em" fill="#4CAF50" />
+                        <Label text="Total Duration" style="-fx-font-size: 16px;" />
+                        <Label fx:id="totalDurationLabel" text="0 min"
+                            style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                    </VBox>
+                    <VBox styleClass="card" prefWidth="200">
+                        <FontAwesomeIconView glyphName="TROPHY" size="2em" fill="#FFC107" />
+                        <Label text="Goals Completed" style="-fx-font-size: 16px;" />
+                        <Label fx:id="goalsCompletedLabel" text="0"
+                            style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                    </VBox>
+                </HBox>
+
+                <!-- Recent Activity -->
+                <VBox spacing="10" styleClass="card">
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <FontAwesomeIconView glyphName="LIST" size="1.5em" fill="#2196F3" />
+                        <Label text="Recent Activity"
+                            style="-fx-font-size: 18; -fx-font-weight: bold;" />
+                    </HBox>
+                    <TableView fx:id="workoutTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="dateColumn" text="Date" />
+                            <TableColumn fx:id="typeColumn" text="Type" />
+                            <TableColumn fx:id="durationColumn" text="Duration (min)" />
+                            <TableColumn fx:id="intensityColumn" text="Intensity" />
+                            <TableColumn fx:id="caloriesColumn" text="Calories" />
+                        </columns>
+                    </TableView>
+                </VBox>
+
+                <!-- Activity Chart -->
+                <VBox spacing="10" styleClass="card">
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <FontAwesomeIconView glyphName="LINE_CHART" size="1.5em" fill="#2196F3" />
+                        <Label text="Activity Trends"
+                            style="-fx-font-size: 18; -fx-font-weight: bold;" />
+                    </HBox>
+                    <LineChart fx:id="activityChart">
+                        <xAxis>
+                            <CategoryAxis label="Date" />
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Calories Burned" />
+                        </yAxis>
+                    </LineChart>
+                </VBox>
+            </VBox>
+        </Tab>
+
+        <!-- Add Workout Tab -->
+        <Tab text="Add Workout" closable="false">
+            <VBox spacing="20" styleClass="card">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <FontAwesomeIconView glyphName="PLUS_SQUARE" size="1.5em" fill="#2196F3" />
+                    <Label text="Add New Workout" style="-fx-font-size: 18; -fx-font-weight: bold;" />
+                </HBox>
+
+                <GridPane vgap="15" hgap="15">
+                    <Label text="Exercise Type:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <ComboBox fx:id="exerciseTypeCombo" GridPane.columnIndex="1"
+                        GridPane.rowIndex="0" prefWidth="200" />
+
+                    <Label text="Duration (minutes):" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <TextField fx:id="durationField" GridPane.columnIndex="1"
+                        GridPane.rowIndex="1" />
+
+                    <Label text="Intensity:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <ComboBox fx:id="intensityCombo" GridPane.columnIndex="1"
+                        GridPane.rowIndex="2" prefWidth="200" />
+
+                    <Label text="Calories Burned:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                    <TextField fx:id="caloriesField" GridPane.columnIndex="1"
+                        GridPane.rowIndex="3" />
+
+                    <Label text="Date:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                    <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                </GridPane>
+
+                <Button text="Add Workout" onAction="#handleAddWorkout" styleClass="action-button">
+                    <graphic>
+                        <FontAwesomeIconView glyphName="PLUS_SQUARE" />
+                    </graphic>
+                </Button>
+            </VBox>
+        </Tab>
+
+        <!-- Goals Tab -->
+        <Tab text="Goals" closable="false">
+            <VBox spacing="20">
+                <VBox spacing="10" styleClass="card">
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <FontAwesomeIconView glyphName="FLAG" size="1.5em" fill="#2196F3" />
+                        <Label text="Current Goals"
+                            style="-fx-font-size: 18; -fx-font-weight: bold;" />
+                    </HBox>
+                    <TableView fx:id="goalsTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="goalDescriptionColumn" text="Description" />
+                            <TableColumn fx:id="goalTargetColumn" text="Target" />
+                            <TableColumn fx:id="goalDeadlineColumn" text="Deadline" />
+                            <TableColumn fx:id="goalCompletedColumn" text="Completed" />
+                        </columns>
+                    </TableView>
+                </VBox>
+
+                <VBox spacing="15" styleClass="card">
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <FontAwesomeIconView glyphName="PLUS_SQUARE" size="1.5em" fill="#2196F3" />
+                        <Label text="Add New Goal" style="-fx-font-size: 18; -fx-font-weight: bold;" />
+                    </HBox>
+
+                    <GridPane vgap="15" hgap="15">
+                        <Label text="Goal Description:" GridPane.columnIndex="0"
+                            GridPane.rowIndex="0" />
+                        <TextField fx:id="goalDescriptionField" GridPane.columnIndex="1"
+                            GridPane.rowIndex="0" />
+
+                        <Label text="Target Value:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <TextField fx:id="goalTargetField" GridPane.columnIndex="1"
+                            GridPane.rowIndex="1" />
+
+                        <Label text="Deadline:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <DatePicker fx:id="goalDeadlinePicker" GridPane.columnIndex="1"
+                            GridPane.rowIndex="2" />
+                    </GridPane>
+
+                    <Button text="Add Goal" onAction="#handleAddGoal" styleClass="action-button">
+                        <graphic>
+                            <FontAwesomeIconView glyphName="PLUS_SQUARE" />
+                        </graphic>
+                    </Button>
+                </VBox>
+            </VBox>
+        </Tab>
+    </TabPane>
+</VBox> 
